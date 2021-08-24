@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="experimental.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- THIS IF FOR THE POPUP ALERT MESSAGE -->
+    <div id="none" class="processalert">
+        <button id="msgclose" onclick="closemsgbox();">X</button>
+        <div id="processalerttext"></div>
+    </div>
+    <!-- THIS IF FOR THE LOGIN FORM /////////////////////////////////////// -->
+
+    <div id="signupbox" class="signupbox">
+        <div id="inbuttons">
+            <div id="loginbutton" onclick="loginflagupdater(event)">Login</div>
+            <div id="signinbutton" onclick="loginflagupdater(event)">Signup</div>
+        </div>
+        <form id="signupsubmit" action="/personadder" method="post">
+            singin
+            <br>
+            <input type="text" name="email" id="emailinput">
+            <br>
+            password
+            <br>
+            <input type="password" name="password" id="passwordinput">
+            <br>
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+    <script src="experimental.js"></script>
+</body>
+</html>
