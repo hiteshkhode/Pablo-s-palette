@@ -125,13 +125,42 @@ function refreshuserpalette(){
                 }
                 document.getElementById('userspalettes').appendChild(foroneuserpalette)
             }
+            listneraddertouserpalettes()
         }))
 }
-function userpalettedivgeneration(color){
-    div = document.createElement('div')
-    div.innerHTML = '<button onclick="deleteperticularcolor(event)">remove</button>'
-    div.setAttribute('class', 'randomcolor')
-    div.style.background = color
-    document.getElementById('colorsofpalette').appendChild(div)
+// function userpalettedivgeneration(color){
+//     div = document.createElement('div')
+//     div.innerHTML = '<button onclick="deleteperticularcolor(event)">remove</button>'
+//     div.setAttribute('class', 'randomcolor')
+//     div.style.background = color
+//     document.getElementById('colorsofpalette').appendChild(div)
+// }
+function listneraddertouserpalettes(){
+    for (let i = 0; i < document.getElementsByClassName('perticularuserspalettes').length; i++) {
+        document.getElementsByClassName('perticularuserspalettes')[i].setAttribute('onmousedown', 'paletteswapper(event)')
+    }
+}
+function paletteswapper(event){
+    if(event.button === 2){
+        event.target.parentNode.parentNode.removeChild(event.target.parentNode)
+        return 0
+    }
+    console.log(event.button)
+    divtoswap = event.target.parentNode
+    console.log(divtoswap)
+    clonedivtoswap = divtoswap.cloneNode(true)
+    clonedivtoswap.setAttribute('class', '')
+    clonedivtoswap.setAttribute('id', 'colorsofpalette')
+    for (let i = 0; i < clonedivtoswap.childNodes.length; i++) {
+        clonedivtoswap.childNodes[i].innerHTML = '<button onclick="deleteperticularcolor(event)">remove</button>'
+        
+    }
+    manaeuveringdiv = document.getElementById('colorsofpalette')
+    manaeuveringdiv.parentNode.removeChild(manaeuveringdiv)
+    clonedivtoswap.removeAttribute('onclick')
+    document.getElementById('newpalettecreation').appendChild(clonedivtoswap)
 }
 
+window.addEventListener('contextmenu', function (e) { 
+    e.preventDefault(); 
+  }, false);
