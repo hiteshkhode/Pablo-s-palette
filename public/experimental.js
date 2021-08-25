@@ -12,12 +12,10 @@ function loginflagupdater(event){
         document.getElementById('loginbutton').style.color = 'gray'
         document.getElementById('signinbutton').style.color = 'black'
     }
-    console.log(inflagcheck)
 }
 
 document.getElementById("signupsubmit").addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log('im here', document.getElementById('emailinput').value)
     email = document.getElementById('emailinput').value;
     password = document.getElementById('passwordinput').value
     if(inflagcheck === 'signup'){
@@ -37,7 +35,7 @@ document.getElementById("signupsubmit").addEventListener("submit", (event) => {
             },
             body: JSON.stringify({email, password}),
             }).then(data => data.json().then((msg) => {
-                processalert(msg.fallout);
+                // processalert(msg.fallout);
                 if(msg.fallout === 'successul login') renderapp()
             }))
     }
@@ -55,6 +53,7 @@ function closemsgbox(){
 ///////////////////////////////////////////////////////BELOW CODE IS FOR APP//////////////////////////////////////////////////////////
 
 function renderapp(){
+    refreshuserpalette()
     document.getElementsByClassName('signupbox')[0].setAttribute('id', 'none')
     document.getElementsByClassName('maincontent')[0].setAttribute('id', 'maincontent')
     renderinitialcolors()
@@ -78,6 +77,8 @@ function updatelocalpalette(){
     cloneofstaged.setAttribute('class', 'perticularuserspalettes')
     cloneofstaged.setAttribute('id', '')
     document.getElementById('userspalettes').appendChild(cloneofstaged)
+    savepalette()
+    // refreshuserpalette()
 }
 function deleteperticularcolor(event){
     element = event.target.parentNode 
@@ -94,17 +95,17 @@ function savepalette(){
         palettestoupload.push(perticularpalettetoupload)
         perticularpalettetoupload = []
     }
-    console.log(palettestoupload)
     fetch('/savepalette', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({email, palettestoupload}),
-        })
+        }).then((data => processalert('your palettes updated successfully')))
+    refreshuserpalette()
 }
 function refreshuserpalette(){
-    document.getElementById('userspalettes').innerHTML = '<button onclick="savepalette()">upload</button><button onclick="refreshuserpalette()">refresh</button>'
+    document.getElementById('userspalettes').innerHTML = '<p>Right click to delete palette and left click to edit</p><button onclick="refreshuserpalette()">refresh</button>'
     fetch('/getuserpalettes', {
         method: 'POST',
         headers: {
@@ -112,7 +113,6 @@ function refreshuserpalette(){
         },
         body: JSON.stringify({email}),
         }).then(data => data.json().then((userpalettes) => {
-            console.log(userpalettes.fallout)
             colorsforuserpalette = userpalettes.fallout
             for (let i = 0; i < colorsforuserpalette.length; i++) {
                 let foroneuserpalette = document.createElement('div')
@@ -142,25 +142,31 @@ function listneraddertouserpalettes(){
 }
 function paletteswapper(event){
     if(event.button === 2){
+        console.log('right clicked')
         event.target.parentNode.parentNode.removeChild(event.target.parentNode)
+        savepalette()
         return 0
     }
-    console.log(event.button)
-    divtoswap = event.target.parentNode
-    console.log(divtoswap)
-    clonedivtoswap = divtoswap.cloneNode(true)
-    clonedivtoswap.setAttribute('class', '')
-    clonedivtoswap.setAttribute('id', 'colorsofpalette')
-    for (let i = 0; i < clonedivtoswap.childNodes.length; i++) {
-        clonedivtoswap.childNodes[i].innerHTML = '<button onclick="deleteperticularcolor(event)">remove</button>'
-        
+    else{
+        console.log('left clicked')
+        divtoswap = event.target.parentNode
+        clonedivtoswap = divtoswap.cloneNode(true)
+        clonedivtoswap.setAttribute('class', '')
+        clonedivtoswap.setAttribute('id', 'colorsofpalette')
+        for (let i = 0; i < clonedivtoswap.childNodes.length; i++) {
+            clonedivtoswap.childNodes[i].innerHTML = '<button onclick="deleteperticularcolor(event)">remove</button>'
+            
+        }
+        manaeuveringdiv = document.getElementById('colorsofpalette')
+        manaeuveringdiv.parentNode.removeChild(manaeuveringdiv)
+        clonedivtoswap.removeAttribute('onclick')
+        document.getElementById('newpalettecreation').appendChild(clonedivtoswap)
     }
-    manaeuveringdiv = document.getElementById('colorsofpalette')
-    manaeuveringdiv.parentNode.removeChild(manaeuveringdiv)
-    clonedivtoswap.removeAttribute('onclick')
-    document.getElementById('newpalettecreation').appendChild(clonedivtoswap)
 }
 
 window.addEventListener('contextmenu', function (e) { 
     e.preventDefault(); 
   }, false);
+function reloadpage(){
+    window.location.reload();
+}

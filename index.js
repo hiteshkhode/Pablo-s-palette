@@ -24,14 +24,12 @@ const signuptableschemaref = new mongoose.Schema({
 const signuptable = mongoose.model("signuptable", signuptableschemaref);
 
 function personadder(req, res){
-    console.log('in personadder', req.body.email)
     const signuprow = new signuptable({
         email: req.body.email,
         password: crypto.createHash('md5').update(req.body.password).digest('hex'),
         userid: req.body.email
     })
     signuptable.find({email: req.body.email}, (err, signuptableres) => {
-        console.log(signuptableres)
         if(typeof(signuptableres[0]) === 'undefined') {
             signuprow.save()
             res.send({fallout: 'Signed up. Now you can login'})
@@ -40,7 +38,6 @@ function personadder(req, res){
     })
 }
 function login(req, res){
-    console.log('in login')
     email = req.body.email
     password = req.body.password
     signuptable.find({email: req.body.email}, (err, signuptableres) => {
@@ -53,18 +50,13 @@ function login(req, res){
     })
 }
 function savepalette(req, res){
-    console.log(req.body.email, req.body.palettestoupload)
     signuptable.updateOne({email: req.body.email}, {palettes: req.body.palettestoupload}, (err) => {
         if(err) console.log(err)
-        else console.log('success os updating')
     })
     signuptable.find({email: req.body.email}, (err, signuptableres) => {
         if(err) console.log(err)
-        else{
-            console.log('inside else')
-            console.log(signuptableres)
-        }
     })
+    res.send({fallout: 'updated'})
 }
 function getuserpalettes(req, res){
     signuptable.find({email: req.body.email}, (err, signuptableres) => {
@@ -77,7 +69,6 @@ function getuserpalettes(req, res){
 
 
 app.get('/favicon.ico', (req, res) => {
-    console.log('infavicon')
     res.sendFile('./public/favicon.ico')
 })
 app.get('/', (req, res) => {

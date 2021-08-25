@@ -21,35 +21,35 @@
             <div id="signinbutton" onclick="loginflagupdater(event)">Signup</div>
         </div>
         <form id="signupsubmit" action="/personadder" method="post">
-            singin
+            <div id="mailcred">Email</div>
             <br>
             <input type="text" name="email" id="emailinput">
             <br>
-            password
+            <div id="passcred">Password</div>
             <br>
             <input type="password" name="password" id="passwordinput">
             <br>
-            <button type="submit">SUBMIT</button>
+            <div id="submitbtn"><button type="submit">SUBMIT</button></div>
         </form>
     </div>
 
     <!-- THIS IS FOR THE MAIN RENDERED CONTENT////////////////////////////////////////////////////////////////////////////// -->
 
     <div id="none" class="maincontent">
-        <div id="welcomemsgforuser">Glad to see you, Hitesh</div>
+        <div id="welcomemsgforuser">Glad to see you! Welcome to,</div>
         <div id="davincititleandlogout">
-            <div id="davinci"><h1 id="davincih1">Da Vinci's Sandbox</h1></div>
-            <button id="logoutbutton">LOGOUT</button>
+            <div id="davinci"><h1 id="davincih1">Da Vinci's Sandbox!</h1></div>
+            <button id="logoutbutton" onclick="reloadpage()">LOGOUT</button>
         </div>
         <div id="paletteexistingandcreation">
             <div id="userspalettes">
-                <button onclick="savepalette()">upload</button>
+                <p>Right click to delete palette and left click to edit</p>
                 <button onclick="refreshuserpalette()">refresh</button>
             </div>
             <div id="newpalettecreation">
                 <div id="paletteactionbutton">
-                    <button id="savepalette" onclick="updatelocalpalette()">SAVE</button>
-                    <button id="createnewpalette" onclick="renderinitialcolors()">Create new</button>
+                    <button id="savepalette" onclick="updatelocalpalette()">Save palette</button>
+                    <button id="createnewpalette" onclick="renderinitialcolors()">Get New colors</button>
                     <button id="addcolortopalette" onclick="coloreddivgenerator()">Add color</button>
                 </div>
                 <div id="colorsofpalette">
