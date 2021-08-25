@@ -94,3 +94,13 @@ body{
 .randomcolor{
     flex-grow: 1;
 }
+.perticularuserspalettes{
+    display: flex;
+    flex-grow: 10;
+    height: 5rem;
+    width: 5rem;
+    margin: 0.5rem;
+}
+.perticularuserspalettes > .randomcolor > button{
+    display: none;
+}

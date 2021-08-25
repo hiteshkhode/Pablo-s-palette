@@ -15,7 +15,7 @@
     </div>
     <!-- THIS IF FOR THE LOGIN FORM /////////////////////////////////////// -->
 
-    <!-- <div id="signupbox" class="signupbox">
+    <div id="signupbox" class="signupbox">
         <div id="inbuttons">
             <div id="loginbutton" onclick="loginflagupdater(event)">Login</div>
             <div id="signinbutton" onclick="loginflagupdater(event)">Signup</div>
@@ -31,21 +31,24 @@
             <br>
             <button type="submit">SUBMIT</button>
         </form>
-    </div> -->
+    </div>
 
-<!-- THIS IS FOR THE MAIN RENDERED CONTENT////////////////////////////////////////////////////////////////////////////// -->
+    <!-- THIS IS FOR THE MAIN RENDERED CONTENT////////////////////////////////////////////////////////////////////////////// -->
 
-    <div id=" " class="maincontent">
+    <div id="none" class="maincontent">
         <div id="welcomemsgforuser">Glad to see you, Hitesh</div>
         <div id="davincititleandlogout">
             <div id="davinci"><h1 id="davincih1">Da Vinci's Sandbox</h1></div>
             <button id="logoutbutton">LOGOUT</button>
         </div>
         <div id="paletteexistingandcreation">
-            <div id="userspalettes"></div>
+            <div id="userspalettes">
+                <button onclick="savepalette()">upload</button>
+                <button onclick="refreshuserpalette()">refresh</button>
+            </div>
             <div id="newpalettecreation">
                 <div id="paletteactionbutton">
-                    <button id="savepalette">SAVE</button>
+                    <button id="savepalette" onclick="updatelocalpalette()">SAVE</button>
                     <button id="createnewpalette" onclick="renderinitialcolors()">Create new</button>
                     <button id="addcolortopalette" onclick="coloreddivgenerator()">Add color</button>
                 </div>
@@ -55,6 +58,7 @@
             </div>
         </div>
     </div>
+
     <script src="experimental.js"></script>
 </body>
 </html>
