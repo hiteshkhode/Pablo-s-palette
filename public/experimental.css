@@ -50,3 +50,47 @@ body{
 #none{
     display: none;
 }
+
+/* ////////////////////////////////////////////////////////// THIS IS FOR MAIN CONTENT////////////////////////////////////// */
+
+#welcomemsgforuser{
+    color: white;
+}
+#davincititleandlogout{
+    display: flex;
+    align-items: center;
+}
+#davincih1{
+    margin: 0;
+    color: rgb(243, 243, 169);
+}
+#logoutbutton{
+    position: absolute;
+    right: 1rem;
+}
+#paletteexistingandcreation{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: aliceblue;
+}
+#userspalettes{
+    flex-grow: 2;
+    border-style: solid;
+}
+#newpalettecreation{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    border-style: dashed;
+}
+#paletteactionbutton{
+    flex-grow: 0.5;
+}
+#colorsofpalette{
+    display: flex;
+    flex-grow: 10;
+}
+.randomcolor{
+    flex-grow: 1;
+}

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="experimental.css">
-    <title>Document</title>
+    <title>Color palette</title>
 </head>
 <body>
     <!-- THIS IF FOR THE POPUP ALERT MESSAGE -->
@@ -15,7 +15,7 @@
     </div>
     <!-- THIS IF FOR THE LOGIN FORM /////////////////////////////////////// -->
 
-    <div id="signupbox" class="signupbox">
+    <!-- <div id="signupbox" class="signupbox">
         <div id="inbuttons">
             <div id="loginbutton" onclick="loginflagupdater(event)">Login</div>
             <div id="signinbutton" onclick="loginflagupdater(event)">Signup</div>
@@ -31,6 +31,29 @@
             <br>
             <button type="submit">SUBMIT</button>
         </form>
+    </div> -->
+
+<!-- THIS IS FOR THE MAIN RENDERED CONTENT////////////////////////////////////////////////////////////////////////////// -->
+
+    <div id=" " class="maincontent">
+        <div id="welcomemsgforuser">Glad to see you, Hitesh</div>
+        <div id="davincititleandlogout">
+            <div id="davinci"><h1 id="davincih1">Da Vinci's Sandbox</h1></div>
+            <button id="logoutbutton">LOGOUT</button>
+        </div>
+        <div id="paletteexistingandcreation">
+            <div id="userspalettes"></div>
+            <div id="newpalettecreation">
+                <div id="paletteactionbutton">
+                    <button id="savepalette">SAVE</button>
+                    <button id="createnewpalette" onclick="renderinitialcolors()">Create new</button>
+                    <button id="addcolortopalette" onclick="coloreddivgenerator()">Add color</button>
+                </div>
+                <div id="colorsofpalette">
+
+                </div>
+            </div>
+        </div>
     </div>
     <script src="experimental.js"></script>
 </body>

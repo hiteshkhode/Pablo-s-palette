@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const express = require('express')
 const crypto = require('crypto')
 require('dotenv').config()
-console.log('this is what should', process.env.MONGODBURI)
+
 const app = express()
 app.use(express.static('public'));
 app.use(express.json());
@@ -16,7 +16,7 @@ const signuptableschema = new mongoose.Schema({
     email: String,
     password: String,
     userid: String,
-    cryptoes: [{cryptocurrency : String, quantity: Number}]
+    palette: [{red : Number, green: Number, blue: Number}]
 })
 
 const signuptable = mongoose.model("signuptable", signuptableschema);
